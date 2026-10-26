@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MonSiteIA : création de sites web, petits outils numériques et designs modernes.">
+  <title>MonSiteIA | Création web</title>
+  <style>
+    :root { --bg:#071323; --panel:#0d2035; --text:#eef7ff; --muted:#a8bacb; --cyan:#22d3ee; --line:#1d3852; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1100px, 90%); margin:auto; }
+    header { position:sticky; top:0; z-index:5; background:rgba(7,19,35,.94); border-bottom:1px solid var(--line); backdrop-filter:blur(10px); }
+    nav { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .logo { font-size:1.35rem; font-weight:800; letter-spacing:-.5px; }
+    .logo span { color:var(--cyan); }
+    .links { display:flex; gap:22px; flex-wrap:wrap; }
+    .links a { color:var(--muted); font-size:.95rem; }
+    .links a:hover { color:var(--cyan); }
+    .hero { padding:95px 0 80px; display:grid; grid-template-columns:1.25fr .75fr; align-items:center; gap:45px; }
+    .tag { display:inline-block; color:var(--cyan); border:1px solid #15536a; background:#0b2a3b; border-radius:999px; padding:7px 13px; font-size:.85rem; }
+    h1 { font-size:clamp(2.6rem, 6vw, 4.8rem); line-height:1.05; letter-spacing:-2px; margin:20px 0; }
+    h1 span, .accent { color:var(--cyan); }
+    .hero p { color:var(--muted); max-width:620px; font-size:1.1rem; }
+    .actions { display:flex; gap:13px; flex-wrap:wrap; margin-top:28px; }
+    .btn { display:inline-block; padding:12px 18px; border-radius:10px; font-weight:700; border:1px solid var(--line); }
+    .btn.primary { background:var(--cyan); color:#04202b; border-color:var(--cyan); }
+    .btn:hover { transform:translateY(-2px); }
+    .visual { border:1px solid #20516a; background:linear-gradient(145deg,#102d47,#081725); border-radius:24px; padding:25px; box-shadow:0 25px 70px #0005; }
+    .window { border:1px solid #24435b; border-radius:14px; overflow:hidden; background:#071323; }
+    .window-top { padding:12px; border-bottom:1px solid var(--line); display:flex; gap:6px; }
+    .dot { width:9px; height:9px; border-radius:50%; background:#456079; }
+    .window-body { padding:25px 20px 30px; }
+    .mock-line { height:10px; border-radius:8px; background:#1b3a54; margin:12px 0; }
+    .mock-line.cyan { background:var(--cyan); width:58%; }
+    .mock-card-row { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:25px; }
+    .mock-card { height:65px; background:#102b43; border:1px solid #1d4962; border-radius:8px; }
+    section { padding:70px 0; }
+    .section-head { margin-bottom:28px; }
+    .section-head h2 { font-size:clamp(1.8rem,4vw,2.6rem); margin:0 0 8px; }
+    .section-head p { color:var(--muted); margin:0; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { background:var(--panel); border:1px solid var(--line); padding:24px; border-radius:16px; }
+    .icon { font-size:1.8rem; }
+    .card h3 { margin:12px 0 8px; }
+    .card p { color:var(--muted); }
+    .details { display:none; color:#d4e8f7 !important; border-top:1px solid var(--line); padding-top:12px; margin-top:14px; }
+    .details.visible { display:block; }
+    .small-btn { cursor:pointer; border:1px solid #226078; background:#0b2a3b; color:var(--cyan); padding:9px 12px; border-radius:8px; font-weight:700; }
+    .about { display:grid; grid-template-columns:1fr 1fr; gap:35px; align-items:start; }
+    .about-box { border-left:3px solid var(--cyan); padding:5px 0 5px 20px; color:var(--muted); }
+    .contact-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:25px; }
+    form { display:grid; gap:13px; }
+    label { font-size:.9rem; color:#d9e8f5; }
+    input, textarea { width:100%; margin-top:6px; padding:12px; border-radius:9px; border:1px solid #28445e; background:#081827; color:var(--text); font:inherit; }
+    textarea { min-height:125px; resize:vertical; }
+    .notice { color:var(--muted); font-size:.88rem; }
+    #form-status { color:var(--cyan); }
+    footer { border-top:1px solid var(--line); padding:25px 0; color:var(--muted); font-size:.9rem; }
+    footer .wrap { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    @media (max-width:750px) {
+      nav { align-items:flex-start; flex-direction:column; padding:15px 0; }
+      .links { gap:14px; }
+      .hero, .about, .contact-grid { grid-template-columns:1fr; }
+      .hero { padding-top:60px; }
+      .cards { grid-template-columns:1fr; }
+      h1 { letter-spacing:-1px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap" aria-label="Navigation principale">
+      <a class="logo" href="#accueil">MonSite<span>IA</span></a>
+      <div class="links">
+        <a href="#accueil">Accueil</a>
+        <a href="#projets">Projets</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="accueil">
+      <div>
+        <span class="tag">Création web · IA · Design</span>
+        <h1>Des idées simples.<br><span>Des projets utiles.</span></h1>
+        <p>Je découvre la création numérique et je transforme mes idées en sites web, petits outils et designs modernes.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projets">Voir mes projets</a>
+          <a class="btn" href="#contact">Me contacter</a>
+        </div>
+      </div>
+      <div class="visual" aria-label="Aperçu décoratif d'un site web">
+        <div class="window">
+          <div class="window-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="window-body">
+            <div class="mock-line cyan"></div>
+            <div class="mock-line" style="width:88%"></div>
+            <div class="mock-line" style="width:68%"></div>
+            <div class="mock-card-row"><div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div></div>
+          </div>
+        </div>
+        <p class="notice">Un espace pour présenter mes idées et mes créations.</p>
+      </div>
+    </section>
+
+    <section id="projets">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Mes <span class="accent">projets</span></h2>
+          <p>Voici les types de créations que je souhaite développer.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">💻</div><h3>Sites web</h3>
+            <p>Des pages claires, modernes et adaptées aux téléphones comme aux ordinateurs.</p>
+            <button class="small-btn" onclick="afficherDetails('site', this)" aria-expanded="false">En savoir plus</button>
+            <p class="details" id="site">Exemples : site vitrine, portfolio, page pour une petite entreprise ou association.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🤖</div><h3>Petits outils IA</h3>
+            <p>Des outils simples pour aider à organiser des idées et gagner du temps.</p>
+            <button class="small-btn" onclick="afficherDetails('ia', this)" aria-expanded="false">En savoir plus</button>
+            <p class="details" id="ia">Exemples : générateur d'idées, assistant spécialisé ou outil de résumé. Les fonctions réelles nécessitent un service ou une API.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🎨</div><h3>Design</h3>
+            <p>Des logos, affiches et visuels avec une identité simple et reconnaissable.</p>
+            <button class="small-btn" onclick="afficherDetails('design', this)" aria-expanded="false">En savoir plus</button>
+            <p class="details" id="design">Exemples : logo de marque, affiche pour un événement, bannière ou publication pour les réseaux sociaux.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="wrap about">
+        <div class="section-head">
+          <h2>À <span class="accent">propos</span></h2>
+          <p>Apprendre, tester et progresser projet après projet.</p>
+        </div>
+        <div class="about-box">
+          <p>Ce site est mon premier portfolio. Je commence par les bases du HTML, du CSS et du JavaScript, puis j'améliore le résultat petit à petit.</p>
+          <p>Mon objectif : créer des projets utiles, faciles à utiliser et agréables à regarder.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Me <span class="accent">contacter</span></h2>
+          <p>Le formulaire prépare un message dans votre application e-mail. Il ne l'envoie pas automatiquement.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Une idée de projet ?</h3>
+            <p>Décrivez brièvement votre idée dans le formulaire. Vous pourrez ensuite vérifier le message avant de l'envoyer.</p>
+            <p class="notice">Pour protéger votre vie privée, ne publiez pas votre adresse personnelle, votre numéro de téléphone ou d'autres informations privées sur ce site public.</p>
+          </div>
+          <div class="card">
+            <form id="contact-form">
+              <label>Votre nom
+                <input id="nom" name="nom" type="text" placeholder="Votre nom" required>
+              </label>
+              <label>Votre adresse e-mail
+                <input id="email" name="email" type="email" placeholder="vous@exemple.fr" required>
+              </label>
+              <label>Sujet
+                <input id="sujet" name="sujet" type="text" placeholder="Sujet du message" required>
+              </label>
+              <label>Message
+                <textarea id="message" name="message" placeholder="Décrivez votre idée..." required></textarea>
+              </label>
+              <button class="btn primary" type="submit">Préparer le message</button>
+              <p id="form-status" class="notice" role="status"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> MonSiteIA</span>
+      <span>Créé avec HTML, CSS et JavaScript.</span>
+    </div>
+  </footer>
+
+  <script>
+    function afficherDetails(id, bouton) {
+      const details = document.getElementById(id);
+      const ouvert = details.classList.toggle('visible');
+      bouton.textContent = ouvert ? 'Réduire' : 'En savoir plus';
+      bouton.setAttribute('aria-expanded', String(ouvert));
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const nom = document.getElementById('nom').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const sujet = document.getElementById('sujet').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const corps = `Nom : ${nom}\nE-mail : ${email}\n\n${message}`;
+      document.getElementById('form-status').textContent =
+        "Votre application e-mail va s'ouvrir. Vérifiez le message avant de l'envoyer.";
+      window.location.href = `mailto:?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
+    });
+  </script>
+</body>
+</html>
